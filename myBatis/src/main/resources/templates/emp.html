@@ -1,26 +1,52 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.salgrater {
+	color: red;
+}
+</style>
 </head>
 <body>
-	<table>
-		<tr>
-			<th>employee_id</th>
-			<th>first_name</th>
-			<th>last_name</th>
-			<th>hireDate</th>
-		</tr>
-		<tr th:each="emp, st : ${empList}">
-			<td>[[${st.index}]]</td>
-			<!--/*  <td>[[${empStat.count}]]</td> */-->
-			<!--/* <td th:text="${emp.employeeId}"></td> */-->
-			<td>[[${emp.employeeId}]]</td>
-			<td th:text="${emp.firstName}"></td>
-			<td th:text="${emp.lastName}"></td>
-			<td th:text="${emp.hireDate}"></td>
-		</tr>
-	</table>
+	<section layout:fragment="content">
+		총사원수 : [[${#arrays.length(empList)}]] <br>
+		<table>
+			<tr>
+				<th>NO</th>
+				<th>employee_id</th>
+				<th>first_name</th>
+				<th>last_name</th>
+				<th>hire_date</th>
+				<th>salary</th>
+				<th>관리</th>
+			</tr>
+			<tr th:each="emp, st : ${empList}"
+				th:class="${st.odd} ? 'active' : '' ">
+				<td>[[${st.index}]]</td>
+				<!--/*  <td>[[${empStat.count}]]</td> */-->
+				<!--/* <td th:text="${emp.employeeId}"></td> */-->
+				<td>[[${emp.employeeId}]]</td>
+				<td th:text="${#strings.toUpperCase(emp.firstName)}"></td>
+				<td th:text="${emp.lastName}"></td>
+				<td th:text="${#dates.format(emp.hireDate,'yyyy-MM-dd')}"></td>
+				<td th:text="${#numbers.formatInteger(emp.salary,3,'COMMA')}"
+					th:class="${emp.salary} > 10000 ? 'salgrater' : ''"></td>
+				<td>
+					<button th:if="${emp.salary} > 10000">급여+보너스</button>
+					<button th:unless="${emp.salary} > 10000">급여</button>
+				</td>
+				<!--/* <td><a th:href="'/insa/emp.info?employeeid='+${emp.employeeId}">상세보기</a></td> */-->
+				<td><a
+					th:href="@{/emp/info(employeeId=${emp.employeeId},firstName=${emp.firstName})}">상세보기</a></td>
+				<td><a th:href="@{/emp/{empId}(empId=${emp.employeeId})}">상세보기</a></td>
+			</tr>
+		</table>
+		<div th:replace="~{footer}"></div>
+		<!--/* <div th:insert="~{footer :: company}"></div> */-->
+	</section>
 </body>
 </html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="demo/src/main/java"/>
+	<classpathentry kind="src" path="demo/src/test/java"/>
+	<classpathentry kind="src" path="demoGradle/src/main/java"/>
+	<classpathentry kind="src" path="demoGradle/src/test/java"/>
+	<classpathentry kind="src" path="myBatis/src/main/java"/>
+	<classpathentry kind="src" path="myBatis/src/test/java"/>
+	<classpathentry kind="lib" path="demoGradle/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="jsp/src/main/webapp/WEB-INF/lib/taglibs-standard-compat-1.2.5.jar"/>
+	<classpathentry kind="lib" path="jsp/src/main/webapp/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar"/>
+	<classpathentry kind="lib" path="jsp/src/main/webapp/WEB-INF/lib/taglibs-standard-jstlel-1.2.5.jar"/>
+	<classpathentry kind="lib" path="jsp/src/main/webapp/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
